@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <button>show something</button>
+  <script>
+    function $(selector) {
+      return document.querySelector(selector);
+    }
+
+    $('button').onclick = function() {
+      console.log('clicked');
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', 'http://127.0.0.1:80/getst',true);
+      xhr.send();
+      xhr.onload = function(){
+        var resP = document.createElement('p');
+        resP.innerHTML = JSON.parse(xhr.responseText)
+        $('body').appendChild(resP);
+        // console.log(JSON.parse(xhr.responseText));
+      }
+
+    }
+  </script>
+</body>
+</html>
